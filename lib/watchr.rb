@@ -14,8 +14,7 @@ require 'rbconfig'
 #
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 module Watchr
-  VERSION = '0.7'
-
+  VERSION = '0.71'
   begin
     require 'fsevent'
     HAVE_FSE = true
@@ -108,7 +107,7 @@ module Watchr
     #
     def handler
       @handler ||=
-        case ENV['HANDLER'] || RBConfig::CONFIG['host_os']
+        case ENV['HANDLER'] || ::RBConfig::CONFIG['host_os']
           when /darwin|mach|osx|fsevents?/i
             if Watchr::HAVE_FSE
               Watchr::EventHandler::Darwin
